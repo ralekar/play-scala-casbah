@@ -3,6 +3,7 @@ package services
 import com.google.inject.{ImplementedBy, Inject}
 import model.{Artist, ArtistDAO, Temp}
 import play.api.libs.json.{JsValue, Json, Writes}
+import play.api.Logger
 
 import scala.concurrent.ExecutionContext
 
@@ -18,7 +19,7 @@ object ArtistResponse {
 
   //implicit val formatter1 = Json.format[Artist]
   implicit val formatter2 = Json.format[ArtistResponse]
-
+  Logger.debug("Attempting risky calculation.")
   implicit val implicitFooWrites = new Writes[ArtistResponse] {
     def writes(discActors : ArtistResponse): JsValue = {
       Json.obj(

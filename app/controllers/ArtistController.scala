@@ -4,14 +4,16 @@ import model.Artist
 import play.api.mvc._
 import play.api.libs.json.Json
 import services.{ArtistServices}
+import play.api.Logger
 
 @Singleton
 class ArtistController @Inject() (service : ArtistServices) extends Controller {
 
   def getArtist(name: String) = Action {
     val response = service.findAllByType(name)
-
+    Logger.debug("Attempting risky calculation.")
     Ok(Json.toJson(response))
+
   }
 
   def addArtist = Action { request =>
